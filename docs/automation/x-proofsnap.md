@@ -16,6 +16,27 @@ Automated monitoring of X (Twitter) accounts using OpenClaw's cron scheduler and
 2. **Python WebSocket Server** - Bridges OpenClaw to Chrome extension
 3. **Chrome Extension** - Captures X page screenshots
 
+### Starting All Components
+
+You need 3 terminals running:
+
+**Terminal 1 - OpenClaw Gateway:**
+```powershell
+openclaw gateway run --bind loopback --port 18789 --force
+```
+
+**Terminal 2 - Python WebSocket Server:**
+```powershell
+cd C:\ProofSnap\native-host
+python proofsnap_host.py
+```
+
+**Terminal 3 - Verify everything is running:**
+```powershell
+openclaw cron status
+openclaw cron list
+```
+
 ### Cron Job
 
 ```bash
@@ -31,9 +52,9 @@ openclaw cron add \
 
 ### Gateway
 
-```bash
+```powershell
 # Start gateway
-openclaw gateway run --bind loopback --port 18789
+openclaw gateway run --bind loopback --port 18789 --force
 
 # Check status
 openclaw gateway status
@@ -84,8 +105,9 @@ Invoke-RestMethod -Uri "http://127.0.0.1:18789/rpc" -Method POST -ContentType "a
 
 ## File Locations
 
-| Item | Path |
-|------|------|
-| Config | `~/.openclaw/openclaw.json` |
-| Cron jobs | `~/.openclaw/cron/jobs.json` |
-| Logs | `/tmp/openclaw/openclaw-YYYY-MM-DD.log` |
+| Item | Path (Windows) |
+|------|----------------|
+| Config | `C:\Users\<user>\.openclaw\openclaw.json` |
+| Cron jobs | `C:\Users\<user>\.openclaw\cron\jobs.json` |
+| Logs | `C:\tmp\openclaw\openclaw-YYYY-MM-DD.log` |
+| Python server | `C:\ProofSnap\native-host\proofsnap_host.py` |
